@@ -22,21 +22,15 @@ import generateUniqueKeys from "./generateUniqueKeys";
  */
 
 /**
- * Datos para la renderización, que incluyen una lista de componentes.
- * @typedef {Object} DataStructure
- * @property {Array<ComponentData>} components - Arreglo con la lista de componentes.
- */
-
-/**
  * Renderizador genérico de una jerarquía de componentes React a partir de una estructura JSON.
  *
  * @param {Object} props - Propiedades del componente.
- * @param {DataStructure} props.data - Estructura de datos con los componentes.
+ * @param {Array<ComponentData>} props.data - Estructura de datos con los componentes.
  * @param {boolean} [props.editMode=false] - Indica si se renderiza en modo edición.
  * @param {EditModeHandler} [props.editModeHandler] - Función opcional para manejar el evento en modo edición.
  * @param {Object<string,function>} [props.functionMap={}] - Mapa de funciones para los eventos.
  */
-const ReactJsonRenderer = ({
+const ReactObjectsRenderer = ({
   data,
   editMode = false,
   editModeHandler,
@@ -56,4 +50,4 @@ const ReactJsonRenderer = ({
 };
 
 
-export default ReactJsonRenderer;
+export default ReactObjectsRenderer;

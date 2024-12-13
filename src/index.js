@@ -1,1 +1,1 @@
-export { default } from "./components/ReactJsonRenderer";
+export { default } from "./components/ReactObjectsRenderer";
