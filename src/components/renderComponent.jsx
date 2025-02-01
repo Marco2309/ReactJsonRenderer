@@ -59,16 +59,6 @@ const renderComponent = (
   const eventHandlers = {};
 
   if (editMode) {
-    // Modo edición: sólo asignar editModeHandler o uno por defecto
-    eventHandlers.onClick = (event) => {
-      event.preventDefault();
-      if (typeof editModeHandler === "function") {
-        editModeHandler(event, component);
-      } else {
-        console.log(`Editar componente con uniqueKey: ${uniqueKey}`);
-      }
-    };
-
     restAttributes.className =
       (restAttributes.className || "") + " editable-component";
   } else {
@@ -104,7 +94,13 @@ const renderComponent = (
 
   return React.createElement(
     type,
-    { key: uniqueKey, ...restAttributes, style, ...eventHandlers },
+    {
+      key: uniqueKey,
+      "data-unique-key": uniqueKey,
+      ...restAttributes,
+      style,
+      ...eventHandlers,
+    },
     ...childElements
   );
 };

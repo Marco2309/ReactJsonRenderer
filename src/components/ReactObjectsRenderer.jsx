@@ -1,6 +1,7 @@
 import React from "react";
 import renderComponent from "./renderComponent";
-import generateUniqueKeys from "./generateUniqueKeys";
+import generateUniqueKeys from "../utilities/generateUniqueKeys.js";
+import getComponentByKey from "../utilities/getComponentsByKey.js";
 
 /**
  * @typedef {Object} ComponentAttribute
@@ -37,9 +38,20 @@ const ReactObjectsRenderer = ({
   functionMap = {},
 }) => {
   const componentsWithKeys = generateUniqueKeys(data);
-
+  // Handler global para clicks en modo edición
+  const handleGlobalClick = (event) => {
+    if (!editMode) return; // Solo actúa en modo edición
+    const clickedElement = event.target.closest("[data-unique-key]");
+    if (clickedElement) {
+      const uniqueKey = clickedElement.getAttribute("data-unique-key");
+      const componentData = getComponentByKey(data, uniqueKey);
+      if (typeof editModeHandler === "function") {
+        editModeHandler(event, componentData || { uniqueKey });
+      }
+    }
+  };
   return (
-    <div>
+    <div onClick={handleGlobalClick}>
       {componentsWithKeys.map((component) => (
         <React.Fragment key={component.uniqueKey}>
           {renderComponent(component, editMode, editModeHandler, functionMap)}
@@ -48,6 +60,5 @@ const ReactObjectsRenderer = ({
     </div>
   );
 };
-
 
 export default ReactObjectsRenderer;
