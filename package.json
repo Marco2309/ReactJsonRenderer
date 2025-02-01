@@ -1,6 +1,6 @@
 {
   "name": "react-objects-renderer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ReactObjectsRenderer es una biblioteca para React que permite generar dinámicamente interfaces de usuario a partir de estructuras de datos definidas como objetos JavaScript, listas de objetos o archivos JSON. Esta herramienta es ideal para crear aplicaciones con configuraciones de interfaz predefinidas.",
   "main": "dist/index.js",
   "module": "dist/index.js",
